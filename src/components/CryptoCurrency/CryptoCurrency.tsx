@@ -45,10 +45,12 @@ export class CryptoCurrency extends Component<CombinedProps> {
 	}
 
 	public render() {
-		const data = this.props.cryptoCurrencyData[0];
-		console.log('in CryptoCurrency data:',data)
+		const data : any = this.props.cryptoCurrencyData;
+		console.log('in CryptoCurrency data :',	JSON.stringify(data));
+	
 
-
+	 
+		 
 		return (
 			<>
 				{this.props.isError ? <Error />
@@ -57,11 +59,15 @@ export class CryptoCurrency extends Component<CombinedProps> {
 						: (
 							data &&
 								<div className='crypto-currency'>
+									
 									<div className='crypto-currency__rank'>
 										<div className='crypto-currency__rank-container'>
 											<div className='crypto-currency__rank-text'>RANK</div>
 											<div className='crypto-currency__rank-circle'>
-												<div className='crypto-currency__rank-number'>{data.rank}</div>
+												<div className='crypto-currency__rank-number'>{
+											//	data.rank
+											'0'
+												}</div>
 											</div>
 										</div>
 									</div>
@@ -76,7 +82,10 @@ export class CryptoCurrency extends Component<CombinedProps> {
 											<tr>
 												<td className='crypto-currency__table-data'>
 													<NumberFormat
-														value={data.market_cap_usd}
+														value={
+														//	data.market_cap_usd
+														data.MKTCAP
+														}
 														displayType={'text'}
 														thousandSeparator={true}
 														prefix={displayCurrenciesMap[this.props.displayCurrency]}
@@ -85,7 +94,9 @@ export class CryptoCurrency extends Component<CombinedProps> {
 												</td>
 												<td className='crypto-currency__table-data'>
 													<NumberFormat
-														value={data['24h_volume_usd']}
+														value={
+														data.TOTALVOLUME24H
+														}
 														displayType={'text'}
 														thousandSeparator={true}
 														prefix={displayCurrenciesMap[this.props.displayCurrency]}
@@ -104,19 +115,27 @@ export class CryptoCurrency extends Component<CombinedProps> {
 											<tr>
 												<td className='crypto-currency__table-data'>
 													<NumberFormat
-														value={data.available_supply}
+														value={
+														data.SUPPLY
+														}
 														displayType={'text'}
 														thousandSeparator={true}
-														suffix={'  ' + data.symbol}
+														suffix={'  ' + 
+													    data.FROMSYMBOL
+													}
 														decimalScale={0}
 													/>
 												</td>
 												<td className='crypto-currency__table-data'>
 													<NumberFormat
-														value={data.max_supply}
+														value={
+														data.SUPPLY
+														}
 														displayType={'text'}
 														thousandSeparator={true}
-														suffix={'  ' + data.symbol}
+														suffix={'  ' + 
+														data.TOSYMBOL
+													}
 														decimalScale={0}
 													/>
 												</td>

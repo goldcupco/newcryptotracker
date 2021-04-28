@@ -68,7 +68,7 @@ export const fetchCryptoCurrency = (
 
 	// Uncomment to return demo data if API is down
 
-/*
+/* example elements
 	24h_volume_usd: "21018472002.9"
 available_supply: "4108044456.0"
 id: "tether"
@@ -100,11 +100,24 @@ total_supply: "4207771504.0"
 		.then(replaceNulls)
 		.then((cryptoData:CryptoData) => {
 			const dateStamp = new Date();
-		console.log('in api-service fetchCryptoCurrency cryptoData:',cryptoData)
-		
+	//	console.log('in api-service fetchCryptoCurrency cryptoData:',cryptoData)
+        var {DISPLAY} : any = cryptoData
+		var myDISPLAY : any = {DISPLAY}
+		var {BTC} : any = myDISPLAY
+		var dataDetail : any = myDISPLAY.DISPLAY.BTC.USD
+
+	
+		console.log('in api-service fetchCryptoCurrency DISPLAY:',JSON.stringify({DISPLAY}))
+
+		console.log('in api-service fetchCryptoCurrency myUSD:',JSON.stringify({dataDetail}))
+
+		cryptoData = dataDetail // ensure the right granularity is returned
+		console.log('in api-service fetchCryptoCurrency cryptoData:',JSON.stringify({cryptoData}))
+
 			return {
 				dateStamp,
 				cryptoData,
+			
 			};
 		});
 };
